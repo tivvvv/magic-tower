@@ -1,5 +1,6 @@
 package com.tiv.magic.tower.game.panel;
 
+import com.tiv.magic.tower.game.adapter.LabelHoverAdapter;
 import com.tiv.magic.tower.game.constants.Constants;
 import com.tiv.magic.tower.game.utils.FontUtils;
 
@@ -65,6 +66,9 @@ public class StartPanel extends JPanel {
 
     private final JLabel quit = new JLabel(Constants.QUIT);
 
+    private final LabelHoverAdapter labelHoverAdapter = new LabelHoverAdapter();
+
+
     public StartPanel() {
         super.setLayout(null);
         super.setName(getClass().getSimpleName());
@@ -106,6 +110,7 @@ public class StartPanel extends JPanel {
         label.setFont(font.deriveFont(MENU_FONT_SIZE));
         label.setForeground(Color.WHITE);
         label.setBounds(MENU_ITEM_X, MENU_START_Y + index * MENU_ITEM_GAP, MENU_ITEM_WIDTH, MENU_ITEM_HEIGHT);
+        label.addMouseListener(labelHoverAdapter);
         super.add(label);
     }
 
