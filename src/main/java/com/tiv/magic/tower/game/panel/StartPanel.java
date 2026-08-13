@@ -1,5 +1,6 @@
 package com.tiv.magic.tower.game.panel;
 
+import com.tiv.magic.tower.game.adapter.GameExitAdapter;
 import com.tiv.magic.tower.game.adapter.LabelHoverAdapter;
 import com.tiv.magic.tower.game.constants.Constants;
 import com.tiv.magic.tower.game.utils.FontUtils;
@@ -116,6 +117,9 @@ public class StartPanel extends JPanel {
                 navigate.accept(GameIntroPanel.class.getSimpleName());
             }
         });
+
+        // 退出游戏: 点击退出程序
+        quit.addMouseListener(new GameExitAdapter());
     }
 
     private void addMenuItem(JLabel label, Font font, int index) {
