@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.InputStream;
 
 /**
- * 字体工具类.
+ * 字体工具类
  */
 public class FontUtils {
 
@@ -13,7 +13,7 @@ public class FontUtils {
     private static final String EN_FONT_PATH = "/assets/fonts/font_en.ttf";
 
     /**
-     * 加载中文字体.
+     * 加载中文字体
      *
      * @return
      */
@@ -22,7 +22,7 @@ public class FontUtils {
     }
 
     /**
-     * 加载英文字体.
+     * 加载英文字体
      *
      * @return
      */
@@ -31,7 +31,7 @@ public class FontUtils {
     }
 
     /**
-     * 从类路径加载字体.
+     * 从类路径加载字体
      */
     private static Font loadFont(String path) {
         try (InputStream fontStream = FontUtils.class.getResourceAsStream(path)) {

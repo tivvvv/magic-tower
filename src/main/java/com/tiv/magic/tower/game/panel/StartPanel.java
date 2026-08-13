@@ -6,9 +6,12 @@ import com.tiv.magic.tower.game.utils.FontUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.function.Consumer;
 
 /**
- * 开始面板.
+ * 开始面板
  */
 public class StartPanel extends JPanel {
 
@@ -68,8 +71,10 @@ public class StartPanel extends JPanel {
 
     private final LabelHoverAdapter labelHoverAdapter = new LabelHoverAdapter();
 
+    private final Consumer<String> navigate;
 
-    public StartPanel() {
+    public StartPanel(Consumer<String> navigate) {
+        this.navigate = navigate;
         super.setLayout(null);
         super.setName(getClass().getSimpleName());
         super.setBackground(Color.BLACK);
@@ -103,6 +108,14 @@ public class StartPanel extends JPanel {
         addMenuItem(save, cnFont, 1);
         addMenuItem(intro, cnFont, 2);
         addMenuItem(quit, cnFont, 3);
+
+        // 游戏介绍: 点击进入介绍面板
+        intro.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigate.accept(GameIntroPanel.class.getSimpleName());
+            }
+        });
     }
 
     private void addMenuItem(JLabel label, Font font, int index) {

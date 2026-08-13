@@ -6,9 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * 标签悬停效果适配器.
+ * 标签悬停效果适配器
  * <p>
- * 鼠标移入时标签文字变为红色, 移出时恢复原来的颜色, 用于菜单项等可交互标签的悬停反馈.
+ * 鼠标移入时标签文字变为红色, 移出时恢复原来的颜色, 用于菜单项等可交互标签的悬停反馈
  */
 public class LabelHoverAdapter extends MouseAdapter {
 
@@ -23,7 +23,7 @@ public class LabelHoverAdapter extends MouseAdapter {
     private static final String ORIGINAL_FOREGROUND = "originalForeground";
 
     /**
-     * 鼠标移入.
+     * 鼠标移入
      *
      * @param e the event to be processed
      */
@@ -36,7 +36,7 @@ public class LabelHoverAdapter extends MouseAdapter {
     }
 
     /**
-     * 鼠标移出.
+     * 鼠标移出
      *
      * @param e the event to be processed
      */
