@@ -1,5 +1,6 @@
 package com.tiv.magic.tower.game.panel;
 
+import com.tiv.magic.tower.game.adapter.ClickAdapter;
 import com.tiv.magic.tower.game.adapter.GameExitAdapter;
 import com.tiv.magic.tower.game.adapter.LabelHoverAdapter;
 import com.tiv.magic.tower.game.constants.Constants;
@@ -7,8 +8,6 @@ import com.tiv.magic.tower.game.utils.FontUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.function.Consumer;
 
 /**
@@ -72,10 +71,10 @@ public class StartPanel extends JPanel {
 
     private final LabelHoverAdapter labelHoverAdapter = new LabelHoverAdapter();
 
-    private final Consumer<String> navigate;
+    private final Consumer<String> navigateTo;
 
-    public StartPanel(Consumer<String> navigate) {
-        this.navigate = navigate;
+    public StartPanel(Consumer<String> navigateTo) {
+        this.navigateTo = navigateTo;
         super.setLayout(null);
         super.setName(getClass().getSimpleName());
         super.setBackground(Color.BLACK);
@@ -110,13 +109,11 @@ public class StartPanel extends JPanel {
         addMenuItem(intro, cnFont, 2);
         addMenuItem(quit, cnFont, 3);
 
+        // 开始游戏: 点击播放开场 CG
+        play.addMouseListener(new ClickAdapter(() -> navigateTo.accept(OpeningCGPanel.class.getSimpleName())));
+
         // 游戏介绍: 点击进入介绍面板
-        intro.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                navigate.accept(GameIntroPanel.class.getSimpleName());
-            }
-        });
+        intro.addMouseListener(new ClickAdapter(() -> navigateTo.accept(GameIntroPanel.class.getSimpleName())));
 
         // 退出游戏: 点击退出程序
         quit.addMouseListener(new GameExitAdapter());

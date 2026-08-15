@@ -11,4 +11,9 @@
 - Comments must NOT end with a period `.`.
 - Commit messages MUST end with a period `.`.
 
+## Code review
+
+- After completing any code change, review the implementation before reporting done.
+- The review must cover: class names, variable names, comments, architecture, whether it is the best implementation, whether constants should be extracted, and whether methods are correctly reused.
+
 

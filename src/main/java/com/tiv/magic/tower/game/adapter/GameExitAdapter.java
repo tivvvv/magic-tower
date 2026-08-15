@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 public class GameExitAdapter extends MouseAdapter {
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        super.mouseClicked(e);
+    public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
         System.exit(0);
     }
 

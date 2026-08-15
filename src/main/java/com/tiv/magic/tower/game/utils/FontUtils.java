@@ -13,21 +13,37 @@ public class FontUtils {
     private static final String EN_FONT_PATH = "/assets/fonts/font_en.ttf";
 
     /**
+     * 中文字体缓存
+     */
+    private static Font cnFont;
+
+    /**
+     * 英文字体缓存
+     */
+    private static Font enFont;
+
+    /**
      * 加载中文字体
      *
-     * @return
+     * @return 中文字体
      */
     public static Font loadCnFont() {
-        return loadFont(CN_FONT_PATH);
+        if (cnFont == null) {
+            cnFont = loadFont(CN_FONT_PATH);
+        }
+        return cnFont;
     }
 
     /**
      * 加载英文字体
      *
-     * @return
+     * @return 英文字体
      */
     public static Font loadEnFont() {
-        return loadFont(EN_FONT_PATH);
+        if (enFont == null) {
+            enFont = loadFont(EN_FONT_PATH);
+        }
+        return enFont;
     }
 
     /**

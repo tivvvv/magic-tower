@@ -3,6 +3,7 @@ package com.tiv.magic.tower.game;
 import com.tiv.magic.tower.game.constants.Constants;
 import com.tiv.magic.tower.game.panel.GameIntroPanel;
 import com.tiv.magic.tower.game.panel.GamePanel;
+import com.tiv.magic.tower.game.panel.OpeningCGPanel;
 import com.tiv.magic.tower.game.panel.StartPanel;
 
 import javax.swing.*;
@@ -23,10 +24,13 @@ public class GameFrame extends JFrame {
 
     private final GameIntroPanel gameIntroPanel;
 
+    private final OpeningCGPanel openingCGPanel;
+
     public GameFrame() throws HeadlessException {
         startPanel = new StartPanel(this::showPanel);
         gamePanel = new GamePanel();
         gameIntroPanel = new GameIntroPanel(this::showPanel);
+        openingCGPanel = new OpeningCGPanel(this::showPanel);
 
         // 窗口标题
         super.setTitle(Constants.CN_TITLE);
@@ -34,6 +38,8 @@ public class GameFrame extends JFrame {
         super.setSize(Constants.WIDTH, Constants.HEIGHT);
         // 窗口位置
         super.setLocationRelativeTo(null);
+        // 禁止缩放窗口
+        super.setResizable(false);
 
         // 把面板加入窗口
         addPanels();
@@ -49,6 +55,7 @@ public class GameFrame extends JFrame {
      */
     private void addPanels() {
         contentPanel.add(startPanel, StartPanel.class.getSimpleName());
+        contentPanel.add(openingCGPanel, OpeningCGPanel.class.getSimpleName());
         contentPanel.add(gamePanel, GamePanel.class.getSimpleName());
         contentPanel.add(gameIntroPanel, GameIntroPanel.class.getSimpleName());
         super.add(contentPanel);

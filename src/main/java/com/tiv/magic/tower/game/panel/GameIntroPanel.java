@@ -1,13 +1,12 @@
 package com.tiv.magic.tower.game.panel;
 
+import com.tiv.magic.tower.game.adapter.ClickAdapter;
 import com.tiv.magic.tower.game.adapter.LabelHoverAdapter;
 import com.tiv.magic.tower.game.constants.Constants;
 import com.tiv.magic.tower.game.utils.FontUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.net.URI;
 import java.util.function.Consumer;
 
@@ -31,7 +30,12 @@ public class GameIntroPanel extends JPanel {
      */
     private static final float BACK_FONT_SIZE = 40f;
 
-    private final Consumer<String> navigate;
+    /**
+     * 内容左边距
+     */
+    private static final int CONTENT_MARGIN_X = 150;
+
+    private final Consumer<String> navigateTo;
 
     private final JLabel title = new JLabel(Constants.INTRO);
 
@@ -43,8 +47,8 @@ public class GameIntroPanel extends JPanel {
 
     private final JLabel back = new JLabel(Constants.BACK);
 
-    public GameIntroPanel(Consumer<String> navigate) {
-        this.navigate = navigate;
+    public GameIntroPanel(Consumer<String> navigateTo) {
+        this.navigateTo = navigateTo;
         super.setLayout(null);
         super.setName(getClass().getSimpleName());
         super.setBackground(Color.BLACK);
@@ -70,13 +74,13 @@ public class GameIntroPanel extends JPanel {
         description.setFont(cnFont.deriveFont(TEXT_FONT_SIZE));
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
-        description.setBounds(150, 180, Constants.WIDTH - 300, 250);
+        description.setBounds(CONTENT_MARGIN_X, 180, Constants.WIDTH - CONTENT_MARGIN_X * 2, 250);
         super.add(description);
 
         // 作者
         author.setFont(cnFont.deriveFont(TEXT_FONT_SIZE));
         author.setForeground(Color.WHITE);
-        author.setBounds(150, 460, 600, 40);
+        author.setBounds(CONTENT_MARGIN_X, 460, 600, 40);
         super.add(author);
 
         // 链接
@@ -84,13 +88,8 @@ public class GameIntroPanel extends JPanel {
         link.setFont(cnFont.deriveFont(TEXT_FONT_SIZE));
         link.setForeground(Color.CYAN);
         link.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        link.setBounds(150, 510, 800, 40);
-        link.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                openLink(Constants.GITHUB_LINK);
-            }
-        });
+        link.setBounds(CONTENT_MARGIN_X, 510, 800, 40);
+        link.addMouseListener(new ClickAdapter(() -> openLink(Constants.GITHUB_LINK)));
         super.add(link);
 
         // 返回按钮
@@ -100,12 +99,7 @@ public class GameIntroPanel extends JPanel {
         back.setHorizontalAlignment(SwingConstants.CENTER);
         back.setBounds(Constants.WIDTH / 2 - 100, 700, 200, 60);
         back.addMouseListener(new LabelHoverAdapter());
-        back.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                navigate.accept(StartPanel.class.getSimpleName());
-            }
-        });
+        back.addMouseListener(new ClickAdapter(() -> navigateTo.accept(StartPanel.class.getSimpleName())));
         super.add(back);
     }
 
